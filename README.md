@@ -63,7 +63,12 @@ A teszt eredménye egyébként az, hogy lehet paramétert átadni a REST API-n k
 
 További részletekhez ld. a curl parancsot ([test/runtimeparams.curl](test/runtimeparams.curl), [test/runtimeparams.curl.json](test/runtimeparams.curl.json)) valamint az AirFlow dokumentációt.
 
-A paraméter átadást magát az AirFlow logban tudod ellenőrizni: DAGs -> runtimeparams -> Graph view  -> print_the_context -> View log
+1. A teszthez egyszerűen csak le kell futtatni a curl scriptben lévő parancsot a konzolon: `curl -X POST -H "Content-Type: application/json" -d 
+   @runtimeparams.curl.json 
+   http://localhost:8080/api/experimental/dags/runtimeparams/dag_runs` 
+   1. A webszerver portját persze át kell állítani, ha nem a 8080-asra állítottad.
+   2. Amennyiben a `runtimeparams` DAG még nincs engedélyezve, akkor be kell kapcsolni a Webes admin konzolon. 
+2. A paraméter átadást ezután az AirFlow logban tudod ellenőrizni: DAGs -> runtimeparams -> Graph view  -> print_the_context -> View log
 
 Megjegyzés:  A `conf` escape-elésére sajnos szükség van, mert az AirFlow Python script (közelebbről a `json.load`) sztringet vár. Ld. pl.: https://stackoverflow.com/questions/5997029/escape-double-quotes-for-json-in-python
 
