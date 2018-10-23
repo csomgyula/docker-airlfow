@@ -83,7 +83,7 @@ Megjegyzés:  A `conf` escape-elésére sajnos szükség van, mert az AirFlow Py
 
 ## További irodalom a REST API-ról
 
-https://airflow.readthedocs.io/en/stable/api.html (rövid leírás)
+https://airflow.apache.org/api.html (rövid leírás)
 
 https://github.com/apache/incubator-airflow/blob/master/tests/www/api/experimental/test_endpoints.py (unit tesztek)
 
