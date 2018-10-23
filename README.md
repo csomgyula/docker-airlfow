@@ -52,7 +52,7 @@ Az egyetlen, amit hozzátesz az eredeti Docker image-hez (https://github.com/puc
 
 ## Paraméter átadás tesztelése
 
-A teszt eredménye egyébként az, hogy lehet paramétert átadni a REST API-n keresztül a `conf` paraméter segítségével, pl.:
+A teszt eredménye egyébként az, hogy **lehet paramétert átadni a REST API-n keresztül** a `conf` paraméter segítségével, pl.:
 
 ```json
 {
@@ -61,16 +61,21 @@ A teszt eredménye egyébként az, hogy lehet paramétert átadni a REST API-n k
 }
 ```
 
-További részletekhez ld. a curl parancsot ([test/runtimeparams.curl](test/runtimeparams.curl), [test/runtimeparams.curl.json](test/runtimeparams.curl.json)) valamint az AirFlow dokumentációt.
+Megjegyzés:  A `conf` escape-elésére sajnos szükség van, mert az AirFlow Python script (közelebbről a `json.load`) sztringet vár. Ld. pl.: https://stackoverflow.com/questions/5997029/escape-double-quotes-for-json-in-python
 
-1. A teszthez egyszerűen csak le kell futtatni a curl scriptben lévő parancsot a konzolon: `curl -X POST -H "Content-Type: application/json" -d 
+**Teszt menete**:
+
+1. Le kell futtatni a curl scriptben lévő parancsot a konzolon: `curl -X POST -H "Content-Type: application/json" -d 
    @runtimeparams.curl.json 
    http://localhost:8080/api/experimental/dags/runtimeparams/dag_runs` 
    1. A webszerver portját persze át kell állítani, ha nem a 8080-asra állítottad.
    2. Amennyiben a `runtimeparams` DAG még nincs engedélyezve, akkor be kell kapcsolni a Webes admin konzolon. 
+   3. Ha többször is futtatni akarod a tesztet, akkor a json fájlban módosítanod kell a `run_id`-t. Ez ugyanis egyedi kell, legyen.
 2. A paraméter átadást ezután az AirFlow logban tudod ellenőrizni: DAGs -> runtimeparams -> Graph view  -> print_the_context -> View log
 
-Megjegyzés:  A `conf` escape-elésére sajnos szükség van, mert az AirFlow Python script (közelebbről a `json.load`) sztringet vár. Ld. pl.: https://stackoverflow.com/questions/5997029/escape-double-quotes-for-json-in-python
+![view_log](doc/view_log.png)
+
+![log](doc/log.png)
 
 ## További irodalom a REST API-ról
 
