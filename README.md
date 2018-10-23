@@ -6,7 +6,9 @@ Dockerized AirFlow (https://airflow.apache.org) image a https://github.com/pucke
 
 Linux alatt nincs szükség Dockerizálásra...
 
-* **Windows 10** (64 bites)
+A Docker image a következő környezetben lett legyártva / tesztelve:
+
+* **Windows 10**  Pro (64 bites)
   * Virtualizálás engedélyezve
   * Hyper-V engedélyezve
   * VirtualBox nem volt előzőleg telepítve
