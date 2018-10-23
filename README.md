@@ -63,7 +63,7 @@ A teszt eredménye egyébként az, hogy lehet paramétert átadni a REST API-n k
 
 További részletekhez ld. a curl parancsot ([test/runtimeparams.curl](test/runtimeparams.curl), [test/runtimeparams.curl.json](test/runtimeparams.curl.json)) valamint az AirFlow dokumentációt.
 
-A paraméter átadást magát az AirFlow logban tudod ellenőrizni: Dag -> runtimeparams -> Graph view  -> print_the_context -> View log
+A paraméter átadást magát az AirFlow logban tudod ellenőrizni: DAGs -> runtimeparams -> Graph view  -> print_the_context -> View log
 
 Megjegyzés:  A `conf` escape-elésére sajnos szükség van, mert az AirFlow Python script (közelebbről a `json.load`) sztringet vár. Ld. pl.: https://stackoverflow.com/questions/5997029/escape-double-quotes-for-json-in-python
 
