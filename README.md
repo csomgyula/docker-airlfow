@@ -38,13 +38,10 @@ Ezekután még be kell menni a konténerbe és el kell indítani a schedulert:
 ```shell
 > docker ps -a
 > docker exec -i -t [CONTAINER] bash
-```
-
-A fentiben, az első, `docker ps -a`-val tudod megnézni a konténer nevét, ezt a következő parancsban kell használnod, amikor bash terminált nyitsz a konténerben. Ha bejutottál a konténerbe, akkor add ki a következőt:
-
-```
 $ airflow scheduler
 ```
+
+Az első, `docker ps -a` paranccsal tudod megnézni a konténer nevét, amit a következő  `docker exec`parancsban kell használnod, amikor bash terminált nyitsz a konténerbe. Miután bejutottál az `airflow scheduler` indítja (az előtérben) az időzítőt.
 
 ## Mire jó?
 
