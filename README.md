@@ -1,6 +1,6 @@
 # docker-airflow
 
-Dockerized AirFlow (https://airflow.apache.org) image a https://github.com/puckel/docker-airflow alapján tesztelés céljából.
+Dockerizált AirFlow (https://airflow.apache.org) image a https://github.com/puckel/docker-airflow alapján. Tesztelés céljából.
 
 ## Előfeltételek
 
@@ -47,8 +47,12 @@ Az első, `docker ps -a` paranccsal tudod megnézni a konténer nevét, amit a k
 
 Az egyetlen, amit hozzátesz az eredeti Docker image-hez (https://github.com/puckel/docker-airflow) az a **runtime paraméter átadás** tesztelése a REST API-n (https://airflow.apache.org/api.html) keresztül:
 
-* Példa DAG: [dags/runtimeparams.py](dags/runtimeparams.py) (ezt a Docker image eleve tartalmazza, ld. `/usr/local/airflow/dags`)
-* Teszt scriptek: [test/runtimeparams.curl](test/runtimeparams.curl) (Curl parancs, aminek futtatásához persze szükséged van a Curl (https://curl.haxx.se/) eszközre), illetve ld. a [test/runtimeparams.curl.json](test/runtimeparams.curl.json) fájlt, ami a paramétereket tartalmazza. 
+* Példa DAG: [dags/runtimeparams.py](dags/runtimeparams.py) 
+  * Ez valósítja meg a paraméter fogadást. Nem csinál mást mint kiírja...
+  * A DAG scriptet a Docker image eleve tartalmazza, ld. `/usr/local/airflow/dags`)
+* Teszt scriptek: 
+  * [test/runtimeparams.curl](test/runtimeparams.curl) - Curl parancs, aminek futtatásához persze szükséged van a Curl (https://curl.haxx.se/) eszközre)
+  * [test/runtimeparams.curl.json](test/runtimeparams.curl.json) - a JSON paramétereket tartalmazza. 
 
 ## Paraméter átadás tesztelése
 
@@ -68,9 +72,9 @@ Megjegyzés:  A `conf` escape-elésére sajnos szükség van, mert az AirFlow Py
 1. Le kell futtatni a curl scriptben lévő parancsot a konzolon: `curl -X POST -H "Content-Type: application/json" -d 
    @runtimeparams.curl.json 
    http://localhost:8080/api/experimental/dags/runtimeparams/dag_runs` 
-   1. A webszerver portját persze át kell állítani, ha nem a 8080-asra állítottad.
+   1. A webszerver portját persze át kell állítani, ha nem a 8080-asra lőtted be.
    2. Amennyiben a `runtimeparams` DAG még nincs engedélyezve, akkor be kell kapcsolni a Webes admin konzolon. 
-   3. Ha többször is futtatni akarod a tesztet, akkor a json fájlban módosítanod kell a `run_id`-t. Ez ugyanis egyedi kell, legyen.
+   3. Ha többször is futtatni akarod a tesztet, akkor a JSON fájlban ([test/runtimeparams.curl.json](test/runtimeparams.curl.json)) módosítanod kell a `run_id`-t. Ez ugyanis egyedi kell, legyen.
 2. A paraméter átadást ezután az AirFlow logban tudod ellenőrizni: DAGs -> runtimeparams -> Graph view  -> print_the_context -> View log
 
 ![view_log](doc/view_log.png)
