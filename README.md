@@ -48,9 +48,9 @@ Az első, `docker ps -a` paranccsal tudod megnézni a konténer nevét, amit a k
 Az egyetlen, amit hozzátesz az eredeti Docker image-hez (https://github.com/puckel/docker-airflow) az a **runtime paraméter átadás** tesztelése a REST API-n (https://airflow.apache.org/api.html) keresztül:
 
 * Példa DAG: [dags/runtimeparams.py](dags/runtimeparams.py) (ezt a Docker image eleve tartalmazza, ld. `/usr/local/airflow/dags`)
-* Teszt: [test/runtimeparams.curl](test/runtimeparams.curl) - (Curl parancs, aminek futtatásához persze szükséged van a Curl eszközre
+* Teszt scriptek: [test/runtimeparams.curl](test/runtimeparams.curl) (Curl parancs, aminek futtatásához persze szükséged van a Curl (https://curl.haxx.se/) eszközre), illetve ld. a [test/runtimeparams.curl.json](test/runtimeparams.curl.json) fájlt, ami a paramétereket tartalmazza. 
 
-## Paraméter átadás
+## Paraméter átadás tesztelése
 
 A teszt eredménye egyébként az, hogy lehet paramétert átadni a REST API-n keresztül a `conf` paraméter segítségével, pl.:
 
@@ -61,7 +61,9 @@ A teszt eredménye egyébként az, hogy lehet paramétert átadni a REST API-n k
 }
 ```
 
-További részletekhez ld. a curl parancsot ([test/runtimeparams.curl](test/runtimeparams.curl)) valamint az AirFlow dokumentációt.
+További részletekhez ld. a curl parancsot ([test/runtimeparams.curl](test/runtimeparams.curl), [test/runtimeparams.curl.json](test/runtimeparams.curl.json)) valamint az AirFlow dokumentációt.
+
+A paraméter átadást magát az AirFlow logban tudod ellenőrizni: Dag -> runtimeparams -> Graph view  -> print_the_context -> View log
 
 Megjegyzés:  A `conf` escape-elésére sajnos szükség van, mert az AirFlow Python script (közelebbről a `json.load`) sztringet vár. Ld. pl.: https://stackoverflow.com/questions/5997029/escape-double-quotes-for-json-in-python
 
