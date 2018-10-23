@@ -2,39 +2,6 @@
 
 2018.10.22
 
-## Docker
-
-Dockerrel sikerült felrakni az AirFlow-t Windowson. 
-
-### Környezet
-
-* **Windows 10** (64 bites)
-  * Virtualizálás engedélyezve
-  * Hyper-V engedélyezve
-  * VirtualBox nem volt előzőleg telepítve
-* **Docker for Windows CE** (Version 18.06.1-ce-win73 (19507) stable https://store.docker.com/editions/community/docker-ce-desktop-windows) 
-  * Linux contairekkel
-* **Dockerizált AirFlow** (https://github.com/puckel/docker-airflow)
-
-### Irodalom
-
-**Windows containerek**:
-
-- https://docs.microsoft.com/hu-hu/virtualization/windowscontainers/about/index
-- https://docs.microsoft.com/hu-hu/virtualization/windowscontainers/quick-start/quick-start-windows-10
-
-**Docker for Windows telepítése és kezdeti lépések**:
-
-- https://docs.docker.com/docker-for-windows/install/
-- https://github.com/docker/labs/blob/master/windows/windows-containers/Setup.md
-- https://docs.docker.com/docker-for-windows/
-
-**Dockerizált AirFlow telepítése**:
-
-* http://intellectualgambols.blogspot.com/2017/09/how-to-run-airflow-in-windows-with.html
-
-## Windows
-
 Windows install sikertelen volt:
 
 **Első probléma**: **Python 3.7**-el nem fut le a telepítő az `async` keyword változóként történő használata miatt syntax errort dobott a telepítõ. Ld. még:
